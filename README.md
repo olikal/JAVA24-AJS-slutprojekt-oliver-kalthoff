@@ -9,7 +9,7 @@ En enkel scrum board-app byggd med React, Firebase Realtime Database och Parcel.
 
 ## 🚀 Demo
 
-Kommer senare.
+[![View Demo](https://img.shields.io/badge/Live%20Demo-ScrumBoard-f5c518?style=flat)](https://olikal.github.io/JAVA24-AJS-slutprojekt-oliver-kalthoff/)
 
 ## 🛠 Funktioner
 
@@ -69,13 +69,21 @@ Backend:
 │ └── style.css
 ```
 
+## 🔧 Installation & krav
+
+För att köra projektet lokalt behöver du ha följande installerat:
+
+- [Node.js](https://nodejs.org/) (LTS version)
+- npm (medföljer Node.js)
+
 ## 📌 Kör projektet lokalt
 
-bash
+```bash
 git clone https://github.com/olikal/JAVA24-AJS-slutprojekt-oliver-kalthoff.git
 cd JAVA24-AJS-slutprojekt-oliver-kalthoff
 npm install
 npm start
+```
 
 🔑 Projektet använder en öppen Firebase Realtime Database – ingen egen konfiguration krävs för att testa appen.
 
