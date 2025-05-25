@@ -1,0 +1,205 @@
+body {
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.chalk-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+input,
+select,
+button {
+  height: 1.5rem;
+  line-height: 1.2;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: white;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+button {
+  background-color: #eee;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.error-banner {
+  background: #ffe0e0;
+  color: #900;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cc0000;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.error-banner button {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #900;
+  cursor: pointer;
+}
+
+.board-frame {
+  background-color: #7a5230;
+  padding: 5px;
+  border: 8px solid #7a5230;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  max-width: 95vw;
+  margin: 0 auto;
+}
+
+.board {
+  background-color: #2f2f2f;
+  padding: 1rem;
+  border-radius: 2px;
+}
+
+.board-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.column-wrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 1px;
+  min-width: 300px;
+  max-width: 90vw;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0.3rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task-column {
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  padding: 0.5rem;
+  width: 220px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: white;
+}
+
+.task-column h3 {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #777;
+  padding-bottom: 0.5rem;
+}
+
+.task-card {
+  width: 190px;
+  height: 170px;
+  padding: 0.8rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: black;
+  font-size: 0.85rem;
+  background-color: #ffc107;
+  position: relative;
+}
+
+.task-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-width: 0 0 18px 18px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+}
+
+.task-card[data-status="new"] {
+  background-color: #FFFF99;
+}
+
+.task-card[data-status="in progress"] {
+  background-color: #AED7FF;
+}
+
+.task-card[data-status="finished"] {
+  background-color: #C9F69B;
+}
+
+.task-card h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 1rem 0 1.5rem 0;
+  font-weight: bold;
+}

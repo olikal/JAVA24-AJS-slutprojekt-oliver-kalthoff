@@ -12,9 +12,11 @@
   "description": "",
   "devDependencies": {
     "del-cli": "^6.0.0",
-    "parcel": "^2.14.4"
+    "parcel": "^2.14.4",
+    "process": "^0.11.10"
   },
   "dependencies": {
+    "firebase": "^11.7.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }
