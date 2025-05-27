@@ -59,7 +59,7 @@ export default function App() {
 
 			<div className="board-frame">
 				<Board
-					tasks={filteredTasks}
+					tasks={tasks}
 					members={members}
 					openTaskModal={() => setShowTaskModal(true)}
 					openMemberModal={() => setShowMemberModal(true)}
