@@ -1,3 +1,5 @@
+// Återanvändbar modal-komponent
+// Tar emot {children} vilket är valfritt innehåll
 export default function Modal({ onClose, children }) {
 	return (
 		<div className="modal" onClick={onClose}>

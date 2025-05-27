@@ -12,7 +12,8 @@ const statusIcons = {
 	Done: "✅",
 };
 
-export default function TaskColumn({ title, tasks, members }) {
+// Kolumner för varje typ av tasks (ToDo, Doing och Done)
+export default function TaskColumn({ title, tasks, members, setErrorMessage }) {
 	return (
 		<div className="task-column">
 			<h3>
@@ -20,10 +21,15 @@ export default function TaskColumn({ title, tasks, members }) {
 			</h3>
 
 			{tasks.length === 0 ? (
-				<p>{emptyMessages[title] || "No tasks found"}</p>
+				<p>{emptyMessages[title]}</p>
 			) : (
 				tasks.map((task) => (
-					<TaskCard key={task.id} task={task} members={members} />
+					<TaskCard
+						key={task.id}
+						task={task}
+						members={members}
+						setErrorMessage={setErrorMessage}
+					/>
 				))
 			)}
 		</div>

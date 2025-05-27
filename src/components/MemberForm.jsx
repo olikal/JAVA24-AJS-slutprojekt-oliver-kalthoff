@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { addMember } from "../firebase/members";
+import { handleError } from "../utils/handleError";
 
-export default function MemberForm({ onClose }) {
+// Formulär för att lägga till member
+export default function MemberForm({ onClose, setErrorMessage }) {
 	const [name, setName] = useState("");
 	const [role, setRole] = useState("");
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+
+		// Måste ha namn och roll
 		if (!name.trim() || !role) return;
 
 		const newMember = {
@@ -21,7 +25,7 @@ export default function MemberForm({ onClose }) {
 			setName("");
 			setRole("");
 		} catch (error) {
-			console.error("Failed to add member", error);
+			handleError("Failed to add member", error, setErrorMessage);
 		}
 	};
 

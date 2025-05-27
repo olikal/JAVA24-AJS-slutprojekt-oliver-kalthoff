@@ -7,7 +7,7 @@ En enkel scrum board-app byggd med React, Firebase Realtime Database och Parcel.
 📸 Exempel på boardens UI:
 ![Startsida av projektet](./src/img/scrumboard-preview.png)
 
-## 🚀 Demo
+## 🚀 Live Demo
 
 [![View Demo](https://img.shields.io/badge/Live%20Demo-ScrumBoard-f5c518?style=flat)](https://olikal.github.io/JAVA24-AJS-slutprojekt-oliver-kalthoff/)
 
@@ -64,7 +64,8 @@ Backend:
 │ └── ErrorBanner.jsx
 ├── utils/
 │ ├── filter.js
-│ └── formatDate.js
+│ ├── formatDate.js
+│ └── handleError.js
 ├── css/
 │ └── style.css
 ```
@@ -89,9 +90,13 @@ npm start
 
 ## 🏁 Mål & Bakgrund
 
-📚 _Det här projektet utvecklades som en del av slutprojektet i Avancerad JavaScript på Grit Academymed syfte att visa:_
+📚 _Det här projektet utvecklades som en del av slutprojektet i Avancerad JavaScript på Grit Academy med syfte att visa:_
 
 - _Förståelse för komponentbaserad utveckling i React_
 - _Interaktion med extern backend (Firebase)_
 - _State management och dynamisk rendering_
 - _Användarvänlig design och funktionell UX_
+
+## 📬 Kontakt
+
+Skapad av Oliver Kalthoff – [GitHub-profil](https://github.com/olikal)

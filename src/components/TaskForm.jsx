@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { addTask } from "../firebase/tasks";
+import { handleError } from "../utils/handleError";
 
-export default function TaskForm({ members, onClose }) {
+// Formulär för ny task
+// Användare väljer tiel, kategori och (valfritt) medlem
+export default function TaskForm({ members, onClose, setErrorMessage }) {
 	const [title, setTitle] = useState("");
 	const [category, setCategory] = useState("");
 	const [selectedMemberId, setSelectedMemberId] = useState("");
 
+	// Filtrerar medlemmar som matchar vald kategori (eller fullstack)
 	const filteredMembers = category
 		? members.filter(
 				(member) => member.role === category || member.role === "fullstack"
@@ -34,7 +38,7 @@ export default function TaskForm({ members, onClose }) {
 			setCategory("");
 			setSelectedMemberId("");
 		} catch (error) {
-			console.error("Failed to add task", error);
+			handleError("Failed to add task", error, setErrorMessage);
 		}
 	};
 

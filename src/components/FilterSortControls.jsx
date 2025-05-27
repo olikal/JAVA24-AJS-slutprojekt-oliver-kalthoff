@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// Filtrerar och sorterar tasks
 export default function FilterControls({
 	categories,
 	members,
@@ -7,8 +8,9 @@ export default function FilterControls({
 }) {
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const [selectedMemberId, setSelectedMemberId] = useState("");
-	const [sortField, setSortField] = useState("");
+	const [sortField, setSortField] = useState(""); // Vilken sortering som valts
 
+	// Uppdaterar filter när något val ändras.
 	useEffect(() => {
 		onFilterChange({
 			category: selectedCategory,

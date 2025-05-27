@@ -1,14 +1,22 @@
 import { useState } from "react";
 import { deleteTask, updateTask } from "../firebase/tasks";
 import { formatDate } from "../utils/formatDate";
+import { handleError } from "../utils/handleError";
 
-export default function TaskCard({ task, members }) {
+// Komponent för enskilt taskcard
+// Innehåller info: titel, kategori, medlem, created-date
+// Interaktioner: edit, assign, finish, reopen och delete
+export default function TaskCard({ task, members, setErrorMessage }) {
+	// Medlemmar som matchar taskens kategori (eller fullstack)
 	const eligibleMembers = members?.filter(
 		(member) => member.role === task.category || member.role === "fullstack"
 	);
+
+	// State för redigeringsläge
 	const [isEditing, setIsEditing] = useState(false);
 	const [editedTitle, setEditedTitle] = useState(task.title);
 	const [editedMemberId, setEditedMemberId] = useState(task.memberId || "");
+	// Då edit inte är available på completed tasks är isEditable true om status är new/in progress
 	const isEditable = ["new", "in progress"].includes(task.status);
 	const assignedMember = members.find((member) => member.id === task.memberId);
 
@@ -19,7 +27,7 @@ export default function TaskCard({ task, members }) {
 				status: "in progress",
 			});
 		} catch (error) {
-			console.error("Failed to assign member", error);
+			handleError("Failed to assign member", error, setErrorMessage);
 		}
 	};
 
@@ -27,7 +35,7 @@ export default function TaskCard({ task, members }) {
 		try {
 			await updateTask(task.id, { status: "finished" });
 		} catch (error) {
-			console.error("Failed to mark task as finished");
+			handleError("Failed to mark task as finished", error, setErrorMessage);
 		}
 	};
 
@@ -35,7 +43,7 @@ export default function TaskCard({ task, members }) {
 		try {
 			await deleteTask(task.id);
 		} catch (error) {
-			console.error("Failed to delete task");
+			handleError("Failed to delete task", error, setErrorMessage);
 		}
 	};
 
@@ -48,12 +56,26 @@ export default function TaskCard({ task, members }) {
 			});
 			setIsEditing(false);
 		} catch (error) {
-			console.error("Failed to edit task");
+			handleError("Failed to edit task", error, setErrorMessage);
+		}
+	};
+
+	// Återöppnar "finished" task
+	const handleMoveToInProgress = async () => {
+		try {
+			await updateTask(task.id, { status: "in progress" });
+		} catch (error) {
+			handleError(
+				"Failed to move task back to in progress",
+				error,
+				setErrorMessage
+			);
 		}
 	};
 
 	return (
 		<div className="task-card" data-status={task.status}>
+			{/* Redigeringsläge, ändra titel och (om in progress) member */}
 			{isEditing && isEditable ? (
 				<>
 					<input
@@ -82,6 +104,7 @@ export default function TaskCard({ task, members }) {
 				</>
 			) : (
 				<>
+					{/* Visningsläge */}
 					<h4>{task.title.charAt(0).toUpperCase() + task.title.slice(1)}</h4>
 					{assignedMember && <p>Member: {assignedMember.name}</p>}
 					<p>
@@ -92,6 +115,7 @@ export default function TaskCard({ task, members }) {
 				</>
 			)}
 
+			{/* Knappar baserat på status/läge */}
 			<div className="task-actions">
 				{isEditing ? (
 					<>
@@ -146,9 +170,12 @@ export default function TaskCard({ task, members }) {
 						</button>
 						<button onClick={handleMarkAsFinished}>Mark as done</button>
 					</>
-				) : (
-					<button onClick={handleDeleteTask}>Delete</button>
-				)}
+				) : task.status === "finished" ? (
+					<>
+						<button onClick={handleMoveToInProgress}>Reopen</button>
+						<button onClick={handleDeleteTask}>Delete</button>
+					</>
+				) : null}
 			</div>
 		</div>
 	);
